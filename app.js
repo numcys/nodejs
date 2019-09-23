@@ -1,24 +1,14 @@
-var redis = require('redis')
-const express = require('express')
-const app = express()
-const port = 3000
-var redis_url = process.env.DATABASE_URL
+const http = require('http');
 
-var client = redis.createClient(redis_url)
+const hostname = '0.0.0.0';
+const port = 3000;
 
-client.on("error", function (err) {
-    console.log("Error " + err);
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello Convox!\n');
 });
 
-client.on("connect", function(){
-    client.set("1", "Hello from Convox", redis.print)
-    app.listen(port, () => console.log(`Example app listening on port ${port}!`))
-})
-
-
-app.get('/', function(req, res){
-    var response
-    client.get("1", function(error, result){
-        res.send(result)
-    })
-})
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
