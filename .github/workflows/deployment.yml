@@ -21,6 +21,6 @@ jobs:
     - name: promote
       uses: convox/action-promote@v1
       with:
-        rack: cgdemo/staging
+        rack: convox/staging
         app: nodejs
         release: ${{ steps.build.outputs.release }}
