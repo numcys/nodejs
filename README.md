@@ -1,4 +1,6 @@
 # examples/nodejs
+<a href="https://github.com/convox-examples/nodejs/actions"><img alt="Convox Deploy Status" src="https://github.com/convox-examples/nodejs/workflows/Convox%20Deploy/badge.svg"></a>
+<br>
 
 This repository contains an example Node.js app configured for local development and deployment to Convox.
 
