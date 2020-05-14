@@ -3,4 +3,4 @@ environment:
 services:
   web:
     build: .
-    port: ${PORT}
+    port: 3000
