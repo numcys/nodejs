@@ -1,7 +1,126 @@
-environment:
-  - PORT=3000
 services:
   web:
     domain: ${HOST}
     build: .
-    port: 3000
+    port: 3001
+    environment:
+      - PORT=3001
+    resources:
+      - postg1
+      - postg2
+      - maria1
+      - maria2
+      - my-sql1
+      - my-sql2
+      - memcach1
+      - memcach2
+      - the-redis1
+      - the-redis2
+      - sharedvolume1
+      - sharedvolume2
+    volumes:
+      - sharedvolume1:/app/shared
+      - sharedvolume2:/app/backup
+
+resources:
+  postg1:
+    type: postgres
+    options:
+      version: "13"
+      class: "db.t3.medium"
+      storage: 50
+      durable: true
+      encrypted: true
+
+  postg2:
+    type: postgres
+    options:
+      version: "12"
+      class: "db.t3.large"
+      storage: 100
+      durable: false
+      encrypted: false
+
+  maria1:
+    type: mariadb
+    options:
+      version: "10.5"
+      class: "db.t3.medium"
+      storage: 50
+      encrypted: true
+      durable: true
+
+  maria2:
+    type: mariadb
+    options:
+      version: "10.4"
+      class: "db.t3.small"
+      storage: 25
+      encrypted: false
+      durable: false
+
+  my-sql1:
+    type: mysql
+    options:
+      version: "8.0"
+      class: "db.t3.medium"
+      storage: 50
+      encrypted: true
+      durable: true
+
+  my-sql2:
+    type: mysql
+    options:
+      version: "5.7"
+      class: "db.t3.large"
+      storage: 100
+      encrypted: false
+      durable: false
+
+  memcach1:
+    type: memcached
+    options:
+      version: "1.6"
+      class: "cache.t3.medium"
+      nodes: 1
+
+  memcach2:
+    type: memcached
+    options:
+      version: "1.5"
+      class: "cache.t3.small"
+      nodes: 2
+
+  the-redis1:
+    type: redis
+    options:
+      version: "6.0"
+      class: "cache.t3.medium"
+      nodes: 2
+      encrypted: true
+
+  the-redis2:
+    type: redis
+    options:
+      version: "5.0"
+      class: "cache.t3.medium"
+      nodes: 3
+      encrypted: false
+
+  sharedvolume1:
+    type: efs
+    options:
+      encrypted: true
+      path: "/data"
+      permissions: "0755"
+      owner-uid: 1000
+      owner-gid: 1000
+
+  sharedvolume2:
+    type: efs
+    options:
+      encrypted: false
+      path: "/backup"
+      permissions: "0700"
+      owner-uid: 1001
+      owner-gid: 1001
