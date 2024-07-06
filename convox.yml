@@ -12,3 +12,6 @@ balancers:
     service: web
     ports:
       8080: 3000
+      80:
+        protocol: UDP
+        port: 3001
