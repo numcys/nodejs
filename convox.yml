@@ -12,5 +12,5 @@ balancers:
     service: web
     ports:
       3001:
-        protocol: UDP
+        protocol: TCP_UDP
         port: 5000
