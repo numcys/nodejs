@@ -11,6 +11,12 @@ balancers:
     - test.annotation.org/value=foobar
     service: web
     ports:
-      3001:
-        protocol: TCP_UDP
-        port: 5000
+      3000:
+        protocol: UDP
+        port: 1000
+      4000:
+        protocol: UDP
+        port: 1001
+      5000:
+        protocol: UDP
+        port: 1002
