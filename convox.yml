@@ -10,6 +10,7 @@ balancers:
     annotations:
     - test.annotation.org/value=foobar
     service: web
+    port: 7000
     ports:
       3000:
         protocol: UDP
