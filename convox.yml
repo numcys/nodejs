@@ -1,5 +1,5 @@
 environment:
-  - PORT=3000
+  - PORT=3001
 services:
   web:
     domain: ${HOST}
@@ -8,6 +8,12 @@ services:
     ports: 
       - 3001
       - 3002
+  web2:
+    domain: ${HOST}
+    build: .
+    ports: 
+      - 5001
+      - 5002
 balancers:
   ingress:
     annotations:
