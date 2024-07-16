@@ -3,25 +3,5 @@ environment:
 services:
   web:
     domain: ${HOST}
-    build: .
+    image: nconvox/dpull:v1
     port: 3000
-    ports: 
-      - 3001
-      - 3002
-  web2:
-    domain: ${HOST}
-    build: .
-    ports: 
-      - 5001
-      - 5002
-balancers:
-  ingress:
-    annotations:
-    - test.annotation.org/value=foobar
-    service: web
-    ports:
-      5000: 3001
-      3002: 3002
-      3000:
-        protocol: TCP
-        port: 3000
