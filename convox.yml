@@ -3,5 +3,5 @@ environment:
 services:
   web:
     domain: ${HOST}
-    image: nconvox/dpull:v1
+    build: .
     port: 3000
