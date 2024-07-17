@@ -2,6 +2,6 @@ environment:
   - PORT=3001
 services:
   web:
-    domain: ${HOST}
+    domain: nconvox/dpull:v1
     build: .
     port: 3000
